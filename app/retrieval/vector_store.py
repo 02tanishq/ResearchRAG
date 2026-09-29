@@ -87,6 +87,11 @@ class FaissVectorStore:
             return []
 
         query_vector = self.embedding_engine.encode([query], is_query=True)
+        logger.info(
+        f"🔎 QUERY: {query[:200]} | "
+        f"VECTOR NORM: {np.linalg.norm(query_vector[0]):.4f} | "
+        f"VECTOR FIRST 5: {query_vector[0][:5]}"
+        )
         search_k = min(top_k * 3, len(self.chunks))  # Retrieve larger pool for filtering
 
         if FAISS_AVAILABLE and self.index is not None:
