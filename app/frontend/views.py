@@ -241,7 +241,7 @@ def render_setup(state: Dict[str, Any]):
         def format_prov(p):
             active = "✅ Active" if avail_providers.get(p, False) else "🔑 Requires Key"
             names = {
-                "gemini": "Google Gemini (Gemini-1.5-Flash)",
+                "gemini": "Google Gemini (Gemini-2.5-Flash)",
                 "groq": "Groq (Llama-3.1-8B)",
                 "openai": "OpenAI (GPT-4o-Mini)",
                 "ollama": "Ollama (Local LLM)",
