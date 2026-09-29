@@ -29,7 +29,7 @@ class LLMClient:
             "ollama": "llama3",
             "local": "deterministic-synthesizer",
         }
-        return defaults.get(provider, "gemini-3.8-flash")
+        return defaults.get(provider, "llama-3.1-8b-instant")
 
     @classmethod
     def get_available_providers(cls) -> Dict[str, bool]:
