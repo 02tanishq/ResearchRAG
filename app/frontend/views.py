@@ -242,7 +242,7 @@ def render_setup(state: Dict[str, Any]):
             active = "✅ Active" if avail_providers.get(p, False) else "🔑 Requires Key"
             names = {
                 "gemini": "Google Gemini (Gemini-3.8-Flash)",
-                "groq": "Groq (Llama-3.1-8B)",
+                "groq": "Groq (openai/gpt-oss-120b)",
                 "openai": "OpenAI (GPT-4o-Mini)",
                 "ollama": "Ollama (Local LLM)",
                 "local": "Deterministic Offline Synthesizer (Zero API Keys)",
