@@ -78,48 +78,47 @@ class LLMClient:
             logger.warning(f"Unknown provider '{self.provider}'. Using offline synthesis.")
             return self._generate_offline(prompt)
 
-   def _generate_gemini(
-    self,
-    prompt: str,
-    system_prompt: Optional[str],
-    temp: float,
-    max_tokens: int
-) -> str:
+    def _generate_gemini(
+        self,
+        prompt: str,
+        system_prompt: Optional[str],
+        temp: float,
+        max_tokens: int
+    ) -> str:
 
-    api_key = os.getenv("GEMINI_API_KEY") or os.getenv("GOOGLE_API_KEY")
+        api_key = os.getenv("GEMINI_API_KEY") or os.getenv("GOOGLE_API_KEY")
 
-    if not api_key:
-        logger.error("GEMINI_API_KEY is not configured.")
-        raise RuntimeError("GEMINI_API_KEY is not configured.")
+        if not api_key:
+            raise RuntimeError("GEMINI_API_KEY is not configured.")
 
-    try:
-        from google import genai
-        from google.genai import types
+        try:
+            from google import genai
+            from google.genai import types
 
-        client = genai.Client(api_key=api_key)
+            client = genai.Client(api_key=api_key)
 
-        response = client.models.generate_content(
-            model=self.model,
-            contents=prompt,
-            config=types.GenerateContentConfig(
-                system_instruction=system_prompt if system_prompt else None,
-                temperature=temp,
-                max_output_tokens=max_tokens,
-            ),
-        )
+            response = client.models.generate_content(
+                model=self.model,
+                contents=prompt,
+                config=types.GenerateContentConfig(
+                    system_instruction=system_prompt if system_prompt else None,
+                    temperature=temp,
+                    max_output_tokens=max_tokens,
+                ),
+            )
 
-        if not response.text:
-            raise RuntimeError("Gemini returned an empty response.")
+            if not response.text:
+                raise RuntimeError("Gemini returned an empty response.")
 
-        logger.info(
-            f"Gemini generation successful using model: {self.model}"
-        )
+            logger.info(
+                f"Gemini generation successful using model: {self.model}"
+            )
 
-        return response.text
+            return response.text
 
-    except Exception as e:
-        logger.error(f"Gemini generation error: {e}")
-        raise
+        except Exception as e:
+            logger.error(f"Gemini generation error: {e}")
+            raise    
 
     def _generate_groq(self, prompt: str, system_prompt: Optional[str], temp: float, max_tokens: int) -> str:
         api_key = os.getenv("GROQ_API_KEY")
