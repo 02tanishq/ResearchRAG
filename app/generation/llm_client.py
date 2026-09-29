@@ -24,12 +24,12 @@ class LLMClient:
     def _get_default_model(provider: str) -> str:
         defaults = {
             "gemini": "gemini-3.8-flash",
-            "groq": "llama-3.1-8b-instant",
+            "groq": "openai/gpt-oss-120b",
             "openai": "gpt-4o-mini",
             "ollama": "llama3",
             "local": "deterministic-synthesizer",
         }
-        return defaults.get(provider, "llama-3.1-8b-instant")
+        return defaults.get(provider, "openai/gpt-oss-120b")
 
     @classmethod
     def get_available_providers(cls) -> Dict[str, bool]:
