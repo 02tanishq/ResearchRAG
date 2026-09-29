@@ -117,7 +117,7 @@ Classifies gaps into:
 
 ### 5.1 Modular LLM Provider Interface
 Supports seamless runtime switching between:
-- **Google Gemini**: `gemini-1.5-flash`
+- **Google Gemini**: `gemini-2.5-flash`
 - **Groq**: `llama-3.1-8b-instant`
 - **OpenAI**: `gpt-4o-mini`
 - **Ollama**: Local models (`llama3`)
