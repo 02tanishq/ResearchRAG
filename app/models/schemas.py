@@ -149,7 +149,7 @@ class ResearchConfig(BaseModel):
     similarity_threshold: float = 0.25
     enable_reranking: bool = True
     llm_provider: str = "gemini"  # "gemini", "groq", "openai", "ollama", "local"
-    llm_model: str = "llama-3.1-8b-instant"
+    llm_model: str = "openai/gpt-oss-120b"
     temperature: float = 0.2
     max_tokens: int = 4096
     deduplication_threshold: float = 0.88
