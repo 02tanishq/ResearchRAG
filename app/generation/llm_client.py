@@ -23,13 +23,13 @@ class LLMClient:
     @staticmethod
     def _get_default_model(provider: str) -> str:
         defaults = {
-            "gemini": "gemini-2.5-flash",
+            "gemini": "gemini-3.8-flash",
             "groq": "llama-3.1-8b-instant",
             "openai": "gpt-4o-mini",
             "ollama": "llama3",
             "local": "deterministic-synthesizer",
         }
-        return defaults.get(provider, "gemini-2.5-flash")
+        return defaults.get(provider, "gemini-3.8-flash")
 
     @classmethod
     def get_available_providers(cls) -> Dict[str, bool]:
